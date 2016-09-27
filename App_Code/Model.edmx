@@ -1,0 +1,813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ba2xai_cldds_backupModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="countryID" Type="nvarchar" MaxLength="10" />
+          <Property Name="stateID" Type="nvarchar" MaxLength="10" />
+          <Property Name="lgaID" Type="nvarchar" MaxLength="10" />
+          <Property Name="city" Type="nvarchar" MaxLength="40" />
+          <Property Name="street" Type="text" />
+          <Property Name="zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="telephone1" Type="nvarchar" MaxLength="40" />
+          <Property Name="telephone2" Type="nvarchar" MaxLength="40" />
+          <Property Name="email1" Type="nvarchar" MaxLength="40" />
+          <Property Name="email2" Type="nvarchar" MaxLength="40" />
+          <Property Name="log_staff" Type="nvarchar" MaxLength="40" />
+          <Property Name="reg_date" Type="nvarchar" MaxLength="40" />
+          <Property Name="visible" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="address_service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="countryID" Type="nvarchar" MaxLength="10" />
+          <Property Name="stateID" Type="nvarchar" MaxLength="10" />
+          <Property Name="lgaID" Type="nvarchar" MaxLength="10" />
+          <Property Name="city" Type="nvarchar" MaxLength="40" />
+          <Property Name="street" Type="text" />
+          <Property Name="zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="telephone1" Type="nvarchar" MaxLength="40" />
+          <Property Name="telephone2" Type="nvarchar" MaxLength="40" />
+          <Property Name="email1" Type="nvarchar" MaxLength="40" />
+          <Property Name="email2" Type="nvarchar" MaxLength="40" />
+          <Property Name="log_staff" Type="nvarchar" MaxLength="40" />
+          <Property Name="reg_date" Type="nvarchar" MaxLength="40" />
+          <Property Name="visible" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="admin_lg">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adminID" Type="varchar" MaxLength="200" />
+          <Property Name="ip_addy" Type="text" />
+          <Property Name="remote_host" Type="text" />
+          <Property Name="remote_user" Type="text" />
+          <Property Name="server_name" Type="text" />
+          <Property Name="server_url" Type="text" />
+          <Property Name="log_date" Type="varchar" MaxLength="200" />
+          <Property Name="log_time" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Admin_Mail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="500" />
+          <Property Name="Date_Sent" Type="datetime" />
+          <Property Name="Agent_Code" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="pt_id" Type="varchar" MaxLength="50" />
+          <Property Name="reg_number" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="applicant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="xname" Type="nvarchar(max)" />
+          <Property Name="address" Type="text" />
+          <Property Name="xemail" Type="nvarchar(max)" />
+          <Property Name="xmobile" Type="nvarchar(max)" />
+          <Property Name="log_staff" Type="nvarchar" MaxLength="20" />
+          <Property Name="visible" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="assignment_info">
+          <Key>
+            <PropertyRef Name="xID" />
+          </Key>
+          <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="assignee_name" Type="nvarchar(max)" />
+          <Property Name="assignee_address" Type="text" />
+          <Property Name="assignor_name" Type="nvarchar(max)" />
+          <Property Name="assignor_address" Type="text" />
+          <Property Name="log_staff" Type="nvarchar" MaxLength="50" />
+          <Property Name="xvisible" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nchar" MaxLength="10" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="inventor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="xname" Type="nvarchar(max)" />
+          <Property Name="address" Type="text" />
+          <Property Name="xemail" Type="nvarchar(max)" />
+          <Property Name="xmobile" Type="nvarchar(max)" />
+          <Property Name="log_staff" Type="nvarchar" MaxLength="20" />
+          <Property Name="visible" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="lga">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="stateID" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="priority_info">
+          <Key>
+            <PropertyRef Name="xID" />
+          </Key>
+          <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="countryID" Type="nvarchar" MaxLength="50" />
+          <Property Name="app_no" Type="nvarchar(max)" />
+          <Property Name="xdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="log_staff" Type="nvarchar" MaxLength="50" />
+          <Property Name="xvisible" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="pt_info">
+          <Key>
+            <PropertyRef Name="xID" />
+          </Key>
+          <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reg_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="xtype" Type="nvarchar(max)" />
+          <Property Name="title_of_invention" Type="nvarchar(max)" />
+          <Property Name="pt_class" Type="nvarchar" MaxLength="50" />
+          <Property Name="loa_doc" Type="text" />
+          <Property Name="doa_doc" Type="text" />
+          <Property Name="ns_doc" Type="text" />
+          <Property Name="pd_doc" Type="text" />
+          <Property Name="rep_pic" Type="text" />
+          <Property Name="rep2_pic" Type="text" />
+          <Property Name="rep3_pic" Type="text" />
+          <Property Name="rep4_pic" Type="text" />
+          <Property Name="log_staff" Type="nvarchar" MaxLength="50" />
+          <Property Name="reg_date" Type="nvarchar" MaxLength="50" />
+          <Property Name="xvisible" Type="nvarchar" MaxLength="10" />
+          <Property Name="upload_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="pt_office">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pwalletID" Type="nvarchar" MaxLength="50" />
+          <Property Name="admin_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="xcomment" Type="text" />
+          <Property Name="xdoc1" Type="text" />
+          <Property Name="xdoc2" Type="text" />
+          <Property Name="xdoc3" Type="text" />
+          <Property Name="xofficer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="reg_date" Type="nvarchar" MaxLength="50" />
+          <Property Name="xvisible" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="pwallet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="validationID" Type="nvarchar" MaxLength="50" />
+          <Property Name="applicantID" Type="nvarchar" MaxLength="50" />
+          <Property Name="log_officer" Type="nvarchar" MaxLength="50" />
+          <Property Name="amt" Type="nvarchar" MaxLength="50" />
+          <Property Name="stage" Type="nchar" MaxLength="10" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
+          <Property Name="data_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="reg_date" Type="nvarchar" MaxLength="50" />
+          <Property Name="visible" Type="nvarchar" MaxLength="10" />
+          <Property Name="rd_no" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="representative">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="agent_code" Type="nvarchar(max)" />
+          <Property Name="xname" Type="nvarchar(max)" />
+          <Property Name="nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="country" Type="nvarchar" MaxLength="50" />
+          <Property Name="state" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="text" />
+          <Property Name="xemail" Type="nvarchar(max)" />
+          <Property Name="xmobile" Type="nvarchar(max)" />
+          <Property Name="log_staff" Type="nvarchar" MaxLength="50" />
+          <Property Name="visible" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="priv" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="countryID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="xadminz_pt">
+          <Key>
+            <PropertyRef Name="xID" />
+          </Key>
+          <Property Name="xID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="xroleID" Type="nvarchar" MaxLength="50" />
+          <Property Name="xname" Type="nvarchar(max)" />
+          <Property Name="xemail" Type="text" />
+          <Property Name="xpass" Type="text" />
+          <Property Name="xtelephone1" Type="nvarchar" MaxLength="50" />
+          <Property Name="xtelephone2" Type="nvarchar" MaxLength="50" />
+          <Property Name="xsection" Type="nvarchar" MaxLength="50" />
+          <Property Name="xlog_officer" Type="nvarchar" MaxLength="50" />
+          <Property Name="xreg_date" Type="nvarchar" MaxLength="50" />
+          <Property Name="xvisible" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityContainer Name="ba2xai_cldds_backupModelStoreContainer">
+          <EntitySet Name="address" EntityType="Self.address" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="address_service" EntityType="Self.address_service" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="admin_lg" EntityType="Self.admin_lg" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Admin_Mail" EntityType="Self.Admin_Mail" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="applicant" EntityType="Self.applicant" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="assignment_info" EntityType="Self.assignment_info" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="inventor" EntityType="Self.inventor" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="lga" EntityType="Self.lga" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="priority_info" EntityType="Self.priority_info" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="pt_info" EntityType="Self.pt_info" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="pt_office" EntityType="Self.pt_office" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="pwallet" EntityType="Self.pwallet" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="representative" EntityType="Self.representative" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="state" EntityType="Self.state" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="xadminz_pt" EntityType="Self.xadminz_pt" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ba2xai_cldds_backupModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="countryID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="stateID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="lgaID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="street" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="telephone1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="telephone2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="email1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="email2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="log_staff" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="reg_date" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="visible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="address_service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="countryID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="stateID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="lgaID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="street" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="telephone1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="telephone2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="email1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="email2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="log_staff" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="reg_date" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="visible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="admin_lg">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="adminID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ip_addy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="remote_host" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="remote_user" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="server_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="server_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="log_date" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="log_time" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Admin_Mail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Subject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Sent" Type="DateTime" Precision="3" />
+          <Property Name="Agent_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="pt_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reg_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="applicant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="xname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="xemail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="xmobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="log_staff" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="visible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="assignment_info">
+          <Key>
+            <PropertyRef Name="xID" />
+          </Key>
+          <Property Name="xID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="assignee_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="assignee_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="assignor_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="assignor_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="log_staff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xvisible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="inventor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="xname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="xemail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="xmobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="log_staff" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="visible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="lga">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stateID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="priority_info">
+          <Key>
+            <PropertyRef Name="xID" />
+          </Key>
+          <Property Name="xID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="countryID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="app_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="xdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="log_staff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xvisible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="pt_info">
+          <Key>
+            <PropertyRef Name="xID" />
+          </Key>
+          <Property Name="xID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="reg_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xtype" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="title_of_invention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pt_class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="loa_doc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="doa_doc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ns_doc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="pd_doc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rep_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rep2_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rep3_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rep4_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="log_staff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="reg_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xvisible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="upload_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="pt_office">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="pwalletID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="admin_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xcomment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="xdoc1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="xdoc2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="xdoc3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="xofficer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="reg_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xvisible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="pwallet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="validationID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="applicantID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="log_officer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="amt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="data_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="reg_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="visible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="rd_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="representative">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="agent_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="xname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="xemail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="xmobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="log_staff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="visible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="priv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="countryID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="xadminz_pt">
+          <Key>
+            <PropertyRef Name="xID" />
+          </Key>
+          <Property Name="xID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="xroleID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="xemail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="xpass" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="xtelephone1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xtelephone2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xsection" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xlog_officer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xreg_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xvisible" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="ba2xai_cldds_backupEntities">
+          <EntitySet Name="addresses" EntityType="Self.address" />
+          <EntitySet Name="address_service" EntityType="Self.address_service" />
+          <EntitySet Name="admin_lg" EntityType="Self.admin_lg" />
+          <EntitySet Name="Admin_Mail" EntityType="Self.Admin_Mail" />
+          <EntitySet Name="applicants" EntityType="Self.applicant" />
+          <EntitySet Name="assignment_info" EntityType="Self.assignment_info" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="inventors" EntityType="Self.inventor" />
+          <EntitySet Name="lgas" EntityType="Self.lga" />
+          <EntitySet Name="priority_info" EntityType="Self.priority_info" />
+          <EntitySet Name="pt_info" EntityType="Self.pt_info" />
+          <EntitySet Name="pt_office" EntityType="Self.pt_office" />
+          <EntitySet Name="pwallets" EntityType="Self.pwallet" />
+          <EntitySet Name="Registrations" EntityType="Self.Registration" />
+          <EntitySet Name="representatives" EntityType="Self.representative" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="states" EntityType="Self.state" />
+          <EntitySet Name="xadminz_pt" EntityType="Self.xadminz_pt" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ba2xai_cldds_backupModelStoreContainer" CdmEntityContainer="ba2xai_cldds_backupEntities">
+          <EntitySetMapping Name="addresses">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.address">
+              <MappingFragment StoreEntitySet="address">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="stateID" ColumnName="stateID" />
+                <ScalarProperty Name="lgaID" ColumnName="lgaID" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="telephone1" ColumnName="telephone1" />
+                <ScalarProperty Name="telephone2" ColumnName="telephone2" />
+                <ScalarProperty Name="email1" ColumnName="email1" />
+                <ScalarProperty Name="email2" ColumnName="email2" />
+                <ScalarProperty Name="log_staff" ColumnName="log_staff" />
+                <ScalarProperty Name="reg_date" ColumnName="reg_date" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="address_service">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.address_service">
+              <MappingFragment StoreEntitySet="address_service">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="stateID" ColumnName="stateID" />
+                <ScalarProperty Name="lgaID" ColumnName="lgaID" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="telephone1" ColumnName="telephone1" />
+                <ScalarProperty Name="telephone2" ColumnName="telephone2" />
+                <ScalarProperty Name="email1" ColumnName="email1" />
+                <ScalarProperty Name="email2" ColumnName="email2" />
+                <ScalarProperty Name="log_staff" ColumnName="log_staff" />
+                <ScalarProperty Name="reg_date" ColumnName="reg_date" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admin_lg">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.admin_lg">
+              <MappingFragment StoreEntitySet="admin_lg">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="adminID" ColumnName="adminID" />
+                <ScalarProperty Name="ip_addy" ColumnName="ip_addy" />
+                <ScalarProperty Name="remote_host" ColumnName="remote_host" />
+                <ScalarProperty Name="remote_user" ColumnName="remote_user" />
+                <ScalarProperty Name="server_name" ColumnName="server_name" />
+                <ScalarProperty Name="server_url" ColumnName="server_url" />
+                <ScalarProperty Name="log_date" ColumnName="log_date" />
+                <ScalarProperty Name="log_time" ColumnName="log_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admin_Mail">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.Admin_Mail">
+              <MappingFragment StoreEntitySet="Admin_Mail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Date_Sent" ColumnName="Date_Sent" />
+                <ScalarProperty Name="Agent_Code" ColumnName="Agent_Code" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+                <ScalarProperty Name="reg_number" ColumnName="reg_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicants">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.applicant">
+              <MappingFragment StoreEntitySet="applicant">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="xname" ColumnName="xname" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="xemail" ColumnName="xemail" />
+                <ScalarProperty Name="xmobile" ColumnName="xmobile" />
+                <ScalarProperty Name="log_staff" ColumnName="log_staff" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="assignment_info">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.assignment_info">
+              <MappingFragment StoreEntitySet="assignment_info">
+                <ScalarProperty Name="xID" ColumnName="xID" />
+                <ScalarProperty Name="assignee_name" ColumnName="assignee_name" />
+                <ScalarProperty Name="assignee_address" ColumnName="assignee_address" />
+                <ScalarProperty Name="assignor_name" ColumnName="assignor_name" />
+                <ScalarProperty Name="assignor_address" ColumnName="assignor_address" />
+                <ScalarProperty Name="log_staff" ColumnName="log_staff" />
+                <ScalarProperty Name="xvisible" ColumnName="xvisible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventors">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.inventor">
+              <MappingFragment StoreEntitySet="inventor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="xname" ColumnName="xname" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="xemail" ColumnName="xemail" />
+                <ScalarProperty Name="xmobile" ColumnName="xmobile" />
+                <ScalarProperty Name="log_staff" ColumnName="log_staff" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lgas">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.lga">
+              <MappingFragment StoreEntitySet="lga">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="stateID" ColumnName="stateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="priority_info">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.priority_info">
+              <MappingFragment StoreEntitySet="priority_info">
+                <ScalarProperty Name="xID" ColumnName="xID" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="app_no" ColumnName="app_no" />
+                <ScalarProperty Name="xdate" ColumnName="xdate" />
+                <ScalarProperty Name="log_staff" ColumnName="log_staff" />
+                <ScalarProperty Name="xvisible" ColumnName="xvisible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pt_info">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.pt_info">
+              <MappingFragment StoreEntitySet="pt_info">
+                <ScalarProperty Name="xID" ColumnName="xID" />
+                <ScalarProperty Name="reg_number" ColumnName="reg_number" />
+                <ScalarProperty Name="xtype" ColumnName="xtype" />
+                <ScalarProperty Name="title_of_invention" ColumnName="title_of_invention" />
+                <ScalarProperty Name="pt_class" ColumnName="pt_class" />
+                <ScalarProperty Name="loa_doc" ColumnName="loa_doc" />
+                <ScalarProperty Name="doa_doc" ColumnName="doa_doc" />
+                <ScalarProperty Name="ns_doc" ColumnName="ns_doc" />
+                <ScalarProperty Name="pd_doc" ColumnName="pd_doc" />
+                <ScalarProperty Name="rep_pic" ColumnName="rep_pic" />
+                <ScalarProperty Name="rep2_pic" ColumnName="rep2_pic" />
+                <ScalarProperty Name="rep3_pic" ColumnName="rep3_pic" />
+                <ScalarProperty Name="rep4_pic" ColumnName="rep4_pic" />
+                <ScalarProperty Name="log_staff" ColumnName="log_staff" />
+                <ScalarProperty Name="reg_date" ColumnName="reg_date" />
+                <ScalarProperty Name="xvisible" ColumnName="xvisible" />
+                <ScalarProperty Name="upload_date" ColumnName="upload_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pt_office">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.pt_office">
+              <MappingFragment StoreEntitySet="pt_office">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="pwalletID" ColumnName="pwalletID" />
+                <ScalarProperty Name="admin_status" ColumnName="admin_status" />
+                <ScalarProperty Name="data_status" ColumnName="data_status" />
+                <ScalarProperty Name="xcomment" ColumnName="xcomment" />
+                <ScalarProperty Name="xdoc1" ColumnName="xdoc1" />
+                <ScalarProperty Name="xdoc2" ColumnName="xdoc2" />
+                <ScalarProperty Name="xdoc3" ColumnName="xdoc3" />
+                <ScalarProperty Name="xofficer" ColumnName="xofficer" />
+                <ScalarProperty Name="reg_date" ColumnName="reg_date" />
+                <ScalarProperty Name="xvisible" ColumnName="xvisible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pwallets">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.pwallet">
+              <MappingFragment StoreEntitySet="pwallet">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="validationID" ColumnName="validationID" />
+                <ScalarProperty Name="applicantID" ColumnName="applicantID" />
+                <ScalarProperty Name="log_officer" ColumnName="log_officer" />
+                <ScalarProperty Name="amt" ColumnName="amt" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="data_status" ColumnName="data_status" />
+                <ScalarProperty Name="reg_date" ColumnName="reg_date" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="rd_no" ColumnName="rd_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="representatives">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.representative">
+              <MappingFragment StoreEntitySet="representative">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+                <ScalarProperty Name="xname" ColumnName="xname" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="xemail" ColumnName="xemail" />
+                <ScalarProperty Name="xmobile" ColumnName="xmobile" />
+                <ScalarProperty Name="log_staff" ColumnName="log_staff" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="priv" ColumnName="priv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.state">
+              <MappingFragment StoreEntitySet="state">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="xadminz_pt">
+            <EntityTypeMapping TypeName="ba2xai_cldds_backupModel.xadminz_pt">
+              <MappingFragment StoreEntitySet="xadminz_pt">
+                <ScalarProperty Name="xID" ColumnName="xID" />
+                <ScalarProperty Name="xroleID" ColumnName="xroleID" />
+                <ScalarProperty Name="xname" ColumnName="xname" />
+                <ScalarProperty Name="xemail" ColumnName="xemail" />
+                <ScalarProperty Name="xpass" ColumnName="xpass" />
+                <ScalarProperty Name="xtelephone1" ColumnName="xtelephone1" />
+                <ScalarProperty Name="xtelephone2" ColumnName="xtelephone2" />
+                <ScalarProperty Name="xsection" ColumnName="xsection" />
+                <ScalarProperty Name="xlog_officer" ColumnName="xlog_officer" />
+                <ScalarProperty Name="xreg_date" ColumnName="xreg_date" />
+                <ScalarProperty Name="xvisible" ColumnName="xvisible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams />
+  </Designer>
+</edmx:Edmx>
