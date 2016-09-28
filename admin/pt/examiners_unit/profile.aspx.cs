@@ -31,7 +31,7 @@ public partial class admin_pt_examiners_unit_profile : System.Web.UI.Page
 
       //  lt_mi =  this.z.getPtInfoRSCnt("3", "Registrable");
         lt_mi = this.z.getPtInfoRSCnt("3", "Search Conducted");
-        lt_mi_a = this.z.getPtInfoRSCnt("3", "Accepted");
+        lt_mi_a = this.z.getPtInfoRSCnt2("3", "Accepted");
         lt_mi_ra = this.z.getPtInfoRSCnt("3", "Refused");
         lt_mi_Kiv = this.z.getPtInfoRSCnt("3", "Kiv");
 

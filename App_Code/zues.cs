@@ -626,7 +626,7 @@ public class zues
         {
           // SqlCommand command = new SqlCommand("select Count(*) AS cnt from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID WHERE pwallet.stage='5' AND pwallet.status='" + status + "'     AND ((pwallet.data_status='Registrable') or (pwallet.data_status='Non-registrable') ) ", connection);
 
-            SqlCommand command = new SqlCommand("select Count(*) AS cnt from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID inner join applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND pwallet.status='" + status + "'   AND pwallet.data_status='" + data_status + "'    ", connection);
+            SqlCommand command = new SqlCommand("select Count(*) AS cnt from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID inner join applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND pwallet.status ='" + status + "'   AND pwallet.data_status='" + data_status + "'    ", connection);
             connection.Open();
             SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             while (reader.Read())
@@ -662,6 +662,24 @@ public class zues
             }
             reader.Close();
         }
+        return cnt;
+    }
+
+    public Int64 getPtInfoRSCnt2(string status, string data_status)
+    {
+        Int64 cnt = 0;
+        SqlConnection connection = new SqlConnection(this.Connect());
+       
+            SqlCommand command = new SqlCommand("select Count(*) AS cnt from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' AND  pwallet.data_status in ('Registered','Accepted') ", connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            while (reader.Read())
+            {
+
+                cnt = Convert.ToInt64(reader["cnt"]);
+            }
+            reader.Close();
+        
         return cnt;
     }
 
@@ -853,6 +871,210 @@ public class zues
 
         //    SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID LEFT OUTER JOIN applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status= '" + data_status + "' )   ) )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
             SqlCommand command = new SqlCommand("select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID ,pwallet.rd_no,pwallet.data_status from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status='" + data_status + "' )    )  order by pwallet.rd_no desc  ", connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            int vsn = 0;
+            while (reader.Read())
+            {
+                vsn = vsn + 1;
+                string voffice = "";
+                //if (getPtOfficeByMID(reader["log_staff"].ToString()) != "")
+                //{
+                //    voffice = (getPtOfficeByMID(reader["log_staff"].ToString()));
+                //}
+                //else
+                //{
+                //    voffice = "None";
+                //}
+
+                if (reader["data_status"].ToString() != "")
+                {
+                    voffice = reader["data_status"].ToString();
+                }
+                else
+                {
+                    voffice = "None";
+                }
+                PtInfo item = new PtInfo
+                {
+                    xID = reader["xID"].ToString(),
+                    reg_number = reader["reg_number"].ToString(),
+                    xtype = reader["xtype"].ToString(),
+                    title_of_invention = reader["title_of_invention"].ToString(),
+                    log_staff = reader["log_staff"].ToString(),
+                    reg_date = reader["reg_date"].ToString(),
+                    ApplicantId = "OAI/DS/" + reader["validationID"].ToString(),
+                    ApplicantName = reader["xname"].ToString(),
+                    Office = voffice,
+                    Sn = Convert.ToString(vsn),
+                    Rdno = reader["rd_no"].ToString()
+                };
+                list.Add(item);
+            }
+            reader.Close();
+        }
+        return list;
+    }
+
+    public List<PtInfo> getPtInfoRSX4(string status, string data_status, string start, string limit)
+    {
+        List<PtInfo> list = new List<PtInfo>();
+        new PtInfo();
+        SqlConnection connection = new SqlConnection(this.Connect());
+        if ((status == "3") && (data_status != "Rejected"))
+        {
+            //  SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status='" + data_status + "' )    ) )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
+
+            SqlCommand command = new SqlCommand("select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID ,pwallet.rd_no,pwallet.data_status  from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' AND   pwallet.data_status in ('Registered','Accepted') order by pwallet.rd_no desc  ", connection);
+
+            //  SqlCommand command = new SqlCommand(string.Concat(new object[] { "Select * from (select pwallet.ID, pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID WHERE pwallet.stage='5' AND pwallet.status='" + status + "' AND ((pwallet.data_status='Registrable') or (pwallet.data_status='Non-registrable') ) ) as Tab WHERE Tab.ID BETWEEN '", start, "' AND '", limit, "' order BY rtm ASC " }), connection);
+
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            string voffice = "";
+            int vsn = 0;
+            while (reader.Read())
+            {
+                vsn = vsn + 1;
+                //if (getPtOfficeByMID(reader["log_staff"].ToString()) != "") {
+                //    voffice=(getPtOfficeByMID(reader["log_staff"].ToString()));
+                //}
+                //else
+                //{
+                //    voffice = "None";
+                //}
+
+                if (reader["data_status"].ToString() != "")
+                {
+                    voffice = reader["data_status"].ToString();
+                }
+                else
+                {
+                    voffice = "None";
+                }
+                PtInfo item = new PtInfo
+                {
+                    xID = reader["xID"].ToString(),
+                    reg_number = reader["reg_number"].ToString(),
+                    xtype = reader["xtype"].ToString(),
+                    title_of_invention = reader["title_of_invention"].ToString(),
+                    log_staff = reader["log_staff"].ToString(),
+                    reg_date = reader["reg_date"].ToString(),
+                    ApplicantId = "OAI/DS/" + reader["validationID"].ToString(),
+                    ApplicantName = reader["xname"].ToString(),
+                    // Office = voffice,
+                    Office = voffice,
+                    Sn = Convert.ToString(vsn),
+                    Rdno = reader["rd_no"].ToString()
+                };
+                list.Add(item);
+            }
+            reader.Close();
+        }
+        else if ((status == "1") && (data_status == "SearchAll"))
+        {
+            // SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID LEFT OUTER JOIN applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND pwallet.status='" + status + "' AND ((pwallet.data_status='Fresh') or (pwallet.data_status='Invalid') ) )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
+
+            //  SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID LEFT OUTER JOIN applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status= '" + data_status + "' )   ) )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
+            SqlCommand command = new SqlCommand("select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID ,pwallet.rd_no,pwallet.data_status  from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' order by pwallet.rd_no desc    ", connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            int vsn = 0;
+            while (reader.Read())
+            {
+                vsn = vsn + 1;
+                string voffice = "";
+                //if (getPtOfficeByMID(reader["log_staff"].ToString()) != "")
+                //{
+                //    voffice = (getPtOfficeByMID(reader["log_staff"].ToString()));
+                //}
+                //else
+                //{
+                //    voffice = "None";
+                //}
+
+                if (reader["data_status"].ToString() != "")
+                {
+                    voffice = reader["data_status"].ToString();
+                }
+                else
+                {
+                    voffice = "None";
+                }
+                PtInfo item = new PtInfo
+                {
+                    xID = reader["xID"].ToString(),
+                    reg_number = reader["reg_number"].ToString(),
+                    xtype = reader["xtype"].ToString(),
+                    title_of_invention = reader["title_of_invention"].ToString(),
+                    log_staff = reader["log_staff"].ToString(),
+                    reg_date = reader["reg_date"].ToString(),
+                    ApplicantId = "OAI/DS/" + reader["validationID"].ToString(),
+                    ApplicantName = reader["xname"].ToString(),
+                    Office = voffice,
+                    Sn = Convert.ToString(vsn),
+                    Rdno = reader["rd_no"].ToString()
+                };
+                list.Add(item);
+            }
+            reader.Close();
+        }
+
+        else if ((status == "1") && (data_status == "Fresh"))
+        {
+            // SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID LEFT OUTER JOIN applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND pwallet.status='" + status + "' AND ((pwallet.data_status='Fresh') or (pwallet.data_status='Invalid') ) )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
+
+            //  SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID LEFT OUTER JOIN applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status= '" + data_status + "' )   ) )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
+            SqlCommand command = new SqlCommand("select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID ,pwallet.rd_no,pwallet.data_status from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status='" + data_status + "' )    )  order by pwallet.rd_no desc  ", connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            int vsn = 0;
+            while (reader.Read())
+            {
+                vsn = vsn + 1;
+                string voffice = "";
+                //if (getPtOfficeByMID(reader["log_staff"].ToString()) != "")
+                //{
+                //    voffice = (getPtOfficeByMID(reader["log_staff"].ToString()));
+                //}
+                //else
+                //{
+                //    voffice = "None";
+                //}
+
+                if (reader["data_status"].ToString() != "")
+                {
+                    voffice = reader["data_status"].ToString();
+                }
+                else
+                {
+                    voffice = "None";
+                }
+                PtInfo item = new PtInfo
+                {
+                    xID = reader["xID"].ToString(),
+                    reg_number = reader["reg_number"].ToString(),
+                    xtype = reader["xtype"].ToString(),
+                    title_of_invention = reader["title_of_invention"].ToString(),
+                    log_staff = reader["log_staff"].ToString(),
+                    reg_date = reader["reg_date"].ToString(),
+                    ApplicantId = "OAI/DS/" + reader["validationID"].ToString(),
+                    ApplicantName = reader["xname"].ToString(),
+                    Office = voffice,
+                    Sn = Convert.ToString(vsn),
+                    Rdno = reader["rd_no"].ToString()
+                };
+                list.Add(item);
+            }
+            reader.Close();
+        }
+        else
+        {
+            // SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID WHERE pwallet.stage='5' AND pwallet.status='" + status + "' AND pwallet.data_status='" + data_status + "' )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
+
+            //    SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID LEFT OUTER JOIN applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status= '" + data_status + "' )   ) )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
+            SqlCommand command = new SqlCommand("select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID ,pwallet.rd_no,pwallet.data_status from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' AND    pwallet.data_status in ('Registered','Accepted')  order by pwallet.rd_no desc  ", connection);
             connection.Open();
             SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             int vsn = 0;

@@ -74,9 +74,11 @@ public partial class admin_pt_Design_Certificate : System.Web.UI.Page
 
             Label6.Text = dd2.Day.ToString() + getDayFormat(dd2.Day.ToString());
 
+            Label15.Text = lt_mi[0].reg_number;
+
           //  Label7.Text = dd2.ToString("MMMM");
 
-           // Label7.Text = getDayFormat(dd2.Day.ToString());
+            // Label7.Text = getDayFormat(dd2.Day.ToString());
 
             Label8.Text = dd2.ToString("MMM") + " " + dd2.Year.ToString();
             DateTime dd3 = DateTime.Now;
