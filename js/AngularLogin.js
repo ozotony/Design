@@ -1,7 +1,7 @@
 ﻿var app = angular.module('myModule', ['smart-table', 'angular-loading-bar']);
-//var serviceBaseDs = 'http://ds.cldng.com/';
+var serviceBaseDs = 'http://ds.cldng.com/';
 
-var serviceBaseDs = 'http://localhost:60693/';
+
 
 
 
