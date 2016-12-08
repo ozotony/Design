@@ -520,7 +520,8 @@
 		<TD COLSPAN=2 WIDTH=734 BGCOLOR="#ffffff" STYLE="border: 1px solid #000000; padding: 0.01in 0.02in">
 			<P CLASS="western" ALIGN=CENTER STYLE="margin-left: 0.01in; margin-right: 0.01in; margin-top: 0.01in">
 			<FONT COLOR="#000000"><FONT FACE="Trebuchet MS, sans-serif"><FONT SIZE=1 STYLE="font-size: 8pt"><B>Your Designs has been accepted and will be published/advertised in accordance with the Patent &Designs Act &nbsp;<BR><BR></B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Trebuchet MS, sans-serif"><FONT SIZE=1 STYLE="font-size: 8pt"><SPAN LANG="en-US"><B>
-           <img src="../../images/Sig4.jpg" ALIGN=BOTTOM WIDTH=137 HEIGHT=72 BORDER=0 />     </B></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Trebuchet MS, sans-serif"><FONT SIZE=1 STYLE="font-size: 8pt"><B><BR><BR>Hadiza B. Ibrahim(FOR THE REGISTRAR)</B></FONT></FONT></FONT></P>
+          <%-- <img src="../../images/Sig4.jpg" ALIGN=BOTTOM WIDTH=137 HEIGHT=72 BORDER=0 />     </B></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Trebuchet MS, sans-serif"><FONT SIZE=1 STYLE="font-size: 8pt"><B><BR><BR>Hadiza B. Ibrahim(FOR THE REGISTRAR)</B></FONT></FONT></FONT></P>--%>
+             <img src="../../images/hadiza.jpg" ALIGN=BOTTOM WIDTH=137 HEIGHT=72 BORDER=0 />     </B></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Trebuchet MS, sans-serif"><FONT SIZE=1 STYLE="font-size: 8pt"><B><BR><BR>Hadiza B. Ibrahim(FOR THE REGISTRAR)</B></FONT></FONT></FONT></P>
 		</TD>
 	</TR>
     <tr>

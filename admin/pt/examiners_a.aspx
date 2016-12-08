@@ -7,23 +7,11 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 
-<link rel="stylesheet" href="../../css/jquery.ui.all.css" />
 
-<script type="text/javascript" src="../../js/jquery.js"></script>
-
-<script type="text/javascript" src="../../js/ui/jquery.cookie.js"></script>
-
-<script type="text/javascript" src="../../js/ui/jquery.ui.core.js"></script>
-
-<script type="text/javascript" src="../../js/ui/jquery.ui.widget.js"></script>
-
-<script type="text/javascript" src="../../js/ui/jquery.ui.datepicker.js"></script>
-
-<script type="text/javascript" src="../../js/ui/jquery.ui.position.js"></script>
-
-<script type="text/javascript" src="../../js/ui/jquery.ui.autocomplete.js"></script>
 
 <script src="../../js/funk.js" type="text/javascript"></script>
+
+    <script src="../../js/jquery-2.1.1.min.js"></script>
 
   <link href="../../css/bootstrap.min.css" rel="stylesheet" />
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>

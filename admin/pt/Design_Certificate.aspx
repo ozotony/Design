@@ -15,7 +15,7 @@
      
 	<!--
     
-		@page { size: 8.5in 11in; margin: 1in }
+
 		P { margin-bottom: 0.08in; direction: ltr; color: #000000; line-height: 115%; widows: 2; orphans: 2 }
 		P.western { font-family: "Calibri", sans-serif; font-size: 11pt; so-language: en-US }
 		P.cjk { font-family: "Calibri", sans-serif; font-size: 11pt }
@@ -39,7 +39,7 @@
 </HEAD>
 <BODY LANG="en-US" TEXT="#000000" >
 
-    <TABLE class="table" STYLE="ALIGN: CENTER;  width="624" >
+    <table class="table" STYLE="ALIGN: CENTER;  width="624" >
 	<COL WIDTH=628>
 	<TR id="cert">
         
@@ -53,9 +53,8 @@
 			</P>--%>
 			
 			
-				<TABLE class="table"  STYLE="  ALIGN: CENTER; WIDTH=624"  CELLPADDING=1 CELLSPACING=0>
-					<COL WIDTH=20>
-					<COL WIDTH=600>
+				<table class="table"  STYLE="  ALIGN: CENTER;"  CELLPADDING=1 CELLSPACING=0>
+					
 					<TR>
 						<TD COLSPAN=2 WIDTH=622 STYLE="border: none; padding: 0in">
 							<P CLASS="western" ALIGN=CENTER><FONT SIZE=5 STYLE="font-size: 16pt"><b>NIGERIA</b></FONT></P>
@@ -80,7 +79,7 @@
 						<TD COLSPAN=2 WIDTH=622 STYLE="border: none; padding: 0in">
 							<P CLASS="western" ALIGN=RIGHT>&nbsp;                        
 							                      <FONT ><FONT SIZE=3><B><asp:Label ID="Label15" runat="server" Text="Label"></asp:Label></B></FONT></FONT>  <br />                                      
-							                    <FONT ><FONT SIZE=3><B><asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>/<asp:Label ID="Label13" runat="server" Text="Label"></asp:Label></B></FONT></FONT></P>
+							                    <FONT ><FONT SIZE=3><B><asp:Label ID="Label12" runat="server" Visible="false" Text="Label"></asp:Label><%--/--%><asp:Label ID="Label13" runat="server" Text="Label"></asp:Label></B></FONT></FONT></P>
 						</TD>
 					</TR>
 					
@@ -108,10 +107,21 @@
 							<P CLASS="western" ALIGN=CENTER><FONT ><FONT SIZE=2 STYLE="font-size: 10pt"><B> <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label> </B></FONT></FONT></P>
 						</TD>
 					</TR>
+                    </table>
+           
+             <br />
+              <br />
+              <br />
+             <br />
+
+            <br />
+             
+            
+            <table class="table" >
 					<TR>
 						<TD COLSPAN=2 WIDTH=622 STYLE="border: none; padding: 0in">
 							<P CLASS="western" STYLE="margin-bottom: 0in"><FONT SIZE=2 STYLE="font-size: 10pt"><B>In
-							Respect Of application to <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>  </B></FONT></P>
+							Respect Of application for <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>  </B></FONT></P>
                             
 							<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
 							</P>
@@ -126,15 +136,18 @@
 							<asp:Label ID="Label11" runat="server" Text="Label"></asp:Label> </B></FONT></FONT><FONT SIZE=2 STYLE="font-size: 10pt"><B></B></FONT></P>
 						</TD>
 					</TR>
+
+                
 					
 					<TR>
+                        
 						<TD WIDTH=20 STYLE="border: none; padding: 0in">
 							<P CLASS="western">&nbsp;</P>
 						</TD>
 						<TD WIDTH=600 STYLE="border: none; padding: 0in">
 							<P LANG="en-US" CLASS="western" ALIGN=RIGHT STYLE="margin-bottom: 0in">
                              
-							<IMG SRC="../../images/Adeyemi.jpg" NAME="Picture 3" ALIGN=BOTTOM WIDTH=176 HEIGHT=100 BORDER=0></P>
+							<%--<IMG SRC="../../images/Adeyemi.jpg" NAME="Picture 3" ALIGN=BOTTOM WIDTH=176 HEIGHT=100 BORDER=0>--%></P>
 							<P CLASS="western" ALIGN=RIGHT STYLE="margin-bottom: 0in"><IMG SRC="../../images/sig12.gif" ALIGN=BOTTOM WIDTH=624 HEIGHT=1></P>
 							<P CLASS="western" ALIGN=RIGHT><FONT SIZE=3><B>WILLIAM KEFTIN AMUGA
 							<BR>Registrar of Trade Marks</B></FONT></P>
@@ -142,9 +155,8 @@
 					</TR>
 					<TR>
 						<TD COLSPAN=2 WIDTH=622 BGCOLOR="#1c5e55" STYLE="border: none; padding: 0in">
-							<P CLASS="western" ALIGN=CENTER><FONT COLOR="#ffffff">N.B.
-							Copyright in this Design will normally expire on (3YEARS AFTER
-							FILING DATE) but may on application made in the prescribed
+							<P CLASS="western" ALIGN=CENTER><FONT COLOR="#ffffff">
+							Copyright in this Design will normally expire on <FONT ><FONT SIZE=2 STYLE="font-size: 10pt"><B><asp:Label ID="Label14" runat="server" Text="Label"></asp:Label> <asp:Label ID="Label16" runat="server" Text="Label"></asp:Label>  </B></FONT></FONT> but may  on application made in the prescribed
 							manner, be extended for two further periods of five years
 							each</FONT><FONT COLOR="#ffffff"><FONT SIZE=3>.</FONT></FONT></P>
 						</TD>
@@ -155,7 +167,7 @@
 							</P>
 						</TD>
 					</TR>--%>
-					<TR>
+		<%--			<TR>
 						<TD COLSPAN=2 WIDTH=622 STYLE="border: none; padding: 0in">
 							<P CLASS="western" ALIGN=CENTER><FONT SIZE=2 STYLE="font-size: 9pt"><BR>This
 							certificate is not for use in legal proceeding or for
@@ -165,15 +177,15 @@
 							register the change. </FONT>
 							</P>
 						</TD>
-					</TR>
+					</TR>--%>
                   
-				</TABLE>
+				</table>
 			
 			
 			
 		</TD>
 	</TR>
-</TABLE>
+</table>
      <input type="button" name="Printform" class='no-print' id="Printform" value="Print" onclick="printAll(); return false"class="button" />
 
     
