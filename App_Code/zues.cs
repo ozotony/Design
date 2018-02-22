@@ -683,6 +683,24 @@ public class zues
         return cnt;
     }
 
+    public int g_pwalletStatus2(string xID, string sent_status, string sent_status2)
+    {
+        SqlConnection connection = new SqlConnection(this.Connect());
+        SqlCommand command = connection.CreateCommand();
+        command.CommandText = "UPDATE pwallet SET status=@sent_status,data_status=@sent_status2 WHERE validationid=@xID ";
+        connection.Open();
+        command.Parameters.Add("@xID", SqlDbType.NVarChar, 50);
+        command.Parameters.Add("@sent_status", SqlDbType.NVarChar, 50);
+        command.Parameters.Add("@sent_status2", SqlDbType.NVarChar, 50);
+        command.Parameters["@xID"].Value = xID;
+        command.Parameters["@sent_status"].Value = sent_status;
+        command.Parameters["@sent_status2"].Value = sent_status2;
+        int num = command.ExecuteNonQuery();
+        connection.Close();
+        return num;
+    }
+
+
     public List<XrowCount> getNew_RowCount(string status, string data_status)
     {
         List<XrowCount> list = new List<XrowCount>();
@@ -758,6 +776,7 @@ public class zues
                     log_staff = reader["log_staff"].ToString(),
                     reg_date = reader["reg_date"].ToString(),
                     ApplicantId = "OAI/DS/" + reader["validationID"].ToString(),
+                    ApplicantId2 = reader["validationID"].ToString(),
                     ApplicantName = reader["xname"].ToString(),
                    // Office = voffice,
                     Office = voffice,
@@ -808,6 +827,7 @@ public class zues
                     reg_date = reader["reg_date"].ToString(),
                     ApplicantId = "OAI/DS/" + reader["validationID"].ToString(),
                     ApplicantName = reader["xname"].ToString(),
+                    ApplicantId2 = reader["validationID"].ToString(),
                     Office = voffice,
                     Sn = Convert.ToString(vsn),
                     Rdno = reader["rd_no"].ToString()
@@ -822,7 +842,7 @@ public class zues
            // SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID LEFT OUTER JOIN applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND pwallet.status='" + status + "' AND ((pwallet.data_status='Fresh') or (pwallet.data_status='Invalid') ) )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
 
           //  SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID LEFT OUTER JOIN applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status= '" + data_status + "' )   ) )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
-            SqlCommand command = new SqlCommand("select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID ,pwallet.rd_no,pwallet.data_status from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status='" + data_status + "' )    )  order by pwallet.rd_no desc  ", connection);
+            SqlCommand command = new SqlCommand("select '' as  description, pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID ,pwallet.rd_no,pwallet.data_status from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status='" + data_status + "' )    )  order by pwallet.rd_no desc  ", connection);
             connection.Open();
             SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             int vsn = 0;
@@ -855,8 +875,10 @@ public class zues
                     title_of_invention = reader["title_of_invention"].ToString(),
                     log_staff = reader["log_staff"].ToString(),
                     reg_date = reader["reg_date"].ToString(),
+                    moveapp = reader["description"].ToString(),
                     ApplicantId = "OAI/DS/" + reader["validationID"].ToString(),
                     ApplicantName = reader["xname"].ToString(),
+                    ApplicantId2 = reader["validationID"].ToString(),
                     Office = voffice,
                     Sn = Convert.ToString(vsn),
                     Rdno = reader["rd_no"].ToString()
@@ -870,7 +892,7 @@ public class zues
            // SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID WHERE pwallet.stage='5' AND pwallet.status='" + status + "' AND pwallet.data_status='" + data_status + "' )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
 
         //    SqlCommand command = new SqlCommand("WITH RSTbl AS (select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID, ROW_NUMBER() OVER (ORDER BY pt_info.xID) AS 'RowRank' from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID LEFT OUTER JOIN applicant on applicant.log_staff=pwallet.ID WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status= '" + data_status + "' )   ) )SELECT * FROM RSTbl  WHERE RowRank BETWEEN '" + start + "' AND '" + limit + "' ", connection);
-            SqlCommand command = new SqlCommand("select pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID ,pwallet.rd_no,pwallet.data_status from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status='" + data_status + "' )    )  order by pwallet.rd_no desc  ", connection);
+            SqlCommand command = new SqlCommand("select '' as  description, pt_info.xID,pt_info.reg_number,pt_info.title_of_invention,pt_info.xtype,pt_info.reg_date,pt_info.log_staff,pwallet.applicantID,applicant.xname,pwallet.validationID ,pwallet.rd_no,pwallet.data_status from pt_info LEFT OUTER JOIN pwallet ON pt_info.log_staff=pwallet.ID  inner join applicant on applicant.log_staff=pwallet.ID  WHERE pwallet.stage='5' AND ((pwallet.status='" + status + "') )  AND ((pwallet.data_status='" + data_status + "' )    )  order by pwallet.rd_no desc  ", connection);
             connection.Open();
             SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             int vsn = 0;
@@ -904,9 +926,11 @@ public class zues
                     log_staff = reader["log_staff"].ToString(),
                     reg_date = reader["reg_date"].ToString(),
                     ApplicantId = "OAI/DS/" + reader["validationID"].ToString(),
+                    ApplicantId2 = reader["validationID"].ToString(),
                     ApplicantName = reader["xname"].ToString(),
                     Office = voffice,
                     Sn = Convert.ToString(vsn),
+                    moveapp = reader["description"].ToString(),
                     Rdno = reader["rd_no"].ToString()
                 };
                 list.Add(item);
@@ -914,6 +938,40 @@ public class zues
             reader.Close();
         }
         return list;
+    }
+
+    public List<ApplicationOfficer2> ApplicationOff(string startdate, string enddate)
+    {
+        string str = "";
+        int sn = 1;
+
+        SqlConnection connection = new SqlConnection(this.Connect());
+        string format = "yyyy-MM-dd";
+        var kk = Convert.ToDateTime(startdate).Date.ToString(format);
+        var kk2 = Convert.ToDateTime(enddate).Date.ToString(format);
+        SqlCommand command = new SqlCommand("select pt_office.data_status,pt_office.reg_date,validationid,pwalletid ,xname  from pt_office inner JOIN xadminz_pt ON xadminz_pt.xID=pt_office.xofficer inner JOIN pwallet on pwallet.id =pt_office.pwalletID where  pt_office.reg_date BETWEEN  '" + kk + "' AND '" + kk2 + "'     ", connection);
+        connection.Open();
+        SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+        List<ApplicationOfficer2> xk = new List<ApplicationOfficer2>();
+        while (reader.Read())
+        {
+            ApplicationOfficer2 pp = new ApplicationOfficer2();
+            pp.data_status = reader["data_status"].ToString();
+            pp.sn = sn;
+            pp.reg_date = reader["reg_date"].ToString();
+
+            pp.Validationid = reader["validationid"].ToString();
+
+            pp.pwalletid = reader["pwalletid"].ToString();
+            pp.xname = reader["xname"].ToString();
+
+            sn++;
+
+            xk.Add(pp);
+        }
+        reader.Close();
+        connection.Close();
+        return xk;
     }
 
     public List<PtInfo> getPtInfoRSX4(string status, string data_status, string start, string limit)
@@ -1650,6 +1708,7 @@ public class zues
         public string xvisible { get; set; }
 
         public string ApplicantId { get; set; }
+        public string ApplicantId2 { get; set; }
 
         public string ApplicantName { get; set; }
 
@@ -1658,6 +1717,10 @@ public class zues
         public string Sn { get; set; }
 
         public string Rdno { get; set; }
+
+        public string description { get; set; }
+
+        public string moveapp { get; set; }
     }
     public class PtOffice
     {

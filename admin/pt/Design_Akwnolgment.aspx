@@ -173,6 +173,54 @@
 				<P>&nbsp;</P>
 			</TD>
 		</TR>
+
+           <%if(lt_xpri.Count>0){%>
+       
+
+        <TR>
+			<TD COLSPAN=4 WIDTH=100% BGCOLOR="#1c5e55" >
+				<P ALIGN=CENTER><FONT COLOR="#ffffff"><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B>---
+				PRIORITY INFORMATION --- </B></FONT></FONT></FONT>
+				</P>
+			</TD>
+		</TR>
+        <tr>
+            <td colspan="2" style="border:0px outset silver; padding: 0px;">
+                <table width="100%">
+                <tr style="background-color:#999999;">
+                <td style="width:10%;">
+                    <strong>S/N</strong></td>
+                <td style="width:30%;">
+                    <strong>COUNTRY</strong></td>
+                <td style="width:30%;">
+                    <strong>APPLICATION NUMBER</strong></td>
+                <td style="width:30%;">
+                    <strong>DATE</strong></td>
+                </tr>
+
+                 <%
+                     for (int pri = 0; pri <lt_xpri.Count; pri++)
+              {%>
+                <tr >
+                <td>
+                <%=pri + 1%>
+                </td>
+                <td>
+                    <% Response.Write(t.getCountryName(lt_xpri[pri].countryID)); %></td>
+                <td>
+                    <% Response.Write(lt_xpri[pri].app_no); %></td>
+                <td>
+                    <% Response.Write(lt_xpri[pri].xdate); %></td>
+                </tr>
+                 <%
+              }
+          %>
+                </table></td>
+        </tr>
+        <%
+          }%>
+
+
 		<TR>
 			<TD COLSPAN=4 WIDTH=100% BGCOLOR="#1c5e55" >
 				<P ALIGN=CENTER><FONT COLOR="#ffffff"><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B>---

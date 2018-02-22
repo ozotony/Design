@@ -39,6 +39,10 @@
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
     <link href="../../css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../js/sweet-alert.min.js"></script>
+    <link href="../../css/sweet-alert.css" rel="stylesheet" />
+
+
 
     <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <script language="javascript" type="text/javascript">
@@ -198,7 +202,9 @@
           <tr class="stripedout">
             <td  align="center">
             &nbsp;<asp:Button ID="btnReloadPage" runat="server" class="button" 
-                    onclick="btnReloadPage_Click" Text="RELOAD PAGE" />
+                    onclick="btnReloadPage_Click" Visible="false" Text="RELOAD PAGE" />
+
+                <input id="Button1" type="button"  class="button" ng-click="changeValue2()" value="UPDATE BATCH " /> 
               </td>
           </tr>
          
@@ -327,12 +333,13 @@
             <th st-sort="xtype" class="tbbg2">DS TYPE</th>
             <th st-sort="reg_date" class="tbbg2">FILING DATE</th>
             <th st-sort="Office"  class="tbbg2">STATUS</th>
+            <th st-sort="Action" class="tbbg2"> Action</th>
                  <th  class="tbbg2">View</th>
                 <th  class="tbbg2">Open New Tab</th>
 
             </tr>
             <tr>
-                <th colspan="10"><input st-search="" class="form-control" placeholder="global search ..." type="text" /></th>
+                <th colspan="11"><input st-search="" class="form-control" placeholder="global search ..." type="text" /></th>
             </tr>
         </thead>
         <tbody>
@@ -346,6 +353,7 @@
                   <td align="center">{{row.xtype}}</td>
                  <td align="center">{{row.reg_date}}</td>
                  <td align="center">{{row.Office}}</td>
+                <td align="center"><span>Search Unit </span</span> <input type="checkbox"  {{row.description}} ng-checked="changeValue(row)" ng-model="row.description"></td>
 
                 <td align="center">
                <a href="verify_details.aspx?x={{row.xID}}"><i class="fa fa-link"></i></a>
@@ -363,7 +371,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="10" class="text-center">
+                <td colspan="11" class="text-center">
                     <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
                 </td>
             </tr>

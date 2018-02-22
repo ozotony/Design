@@ -148,9 +148,16 @@
 							<P LANG="en-US" CLASS="western" ALIGN=RIGHT STYLE="margin-bottom: 0in">
                              
 							<%--<IMG SRC="../../images/Adeyemi.jpg" NAME="Picture 3" ALIGN=BOTTOM WIDTH=176 HEIGHT=100 BORDER=0>--%></P>
+                             <div style="text-align:right;">
+                    <%--  <img alt="sign" class="style1" src="../signatures/Adeyemi.jpg"/> --%>
+                     <img alt="Signature" class="style1" src="./signatures/aisha_acceptance_mini_png.png" />
+
+                   <%-- <img alt="sign" class="style1" src="../signatures/sig.jpg"/>--%>
+
+                </div>
 							<P CLASS="western" ALIGN=RIGHT STYLE="margin-bottom: 0in"><IMG SRC="../../images/sig12.gif" ALIGN=BOTTOM WIDTH=624 HEIGHT=1></P>
-							<P CLASS="western" ALIGN=RIGHT><FONT SIZE=3><B>WILLIAM KEFTIN AMUGA
-							<BR>Registrar of Trade Marks</B></FONT></P>
+							<P CLASS="western" ALIGN=RIGHT><FONT SIZE=3><B>Chinyere Agbai
+							<BR>Acting Director/Registrar</B></FONT></P>
 						</TD>
 					</TR>
 					<TR>

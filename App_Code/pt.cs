@@ -2526,6 +2526,14 @@ new MailAddress(vemail3));
                 command.CommandText = commandText + " VALUES ('" + transID + "','" + agent + "','0','" + amt + "','" + str6 + "','" + str5 + "','" + str7 + "','" + str3 + "','" + str4 + "' ) ";
                 command.CommandText = command.CommandText + " SELECT SCOPE_IDENTITY()";
                 command.Connection.Open();
+
+                foreach (SqlParameter Parameter in command.Parameters)
+                {
+                    if (Parameter.Value == null)
+                    {
+                        Parameter.Value = DBNull.Value;
+                    }
+                }
                 num = Convert.ToInt32(command.ExecuteScalar());
             }
         }
@@ -2552,6 +2560,15 @@ new MailAddress(vemail3));
                         command.Parameters["@xmobile"].Value = c_app.xmobile;
                         command.Parameters["@log_staff"].Value = num;// c_app.log_staff;
                         command.Parameters["@visible"].Value = c_app.visible;
+
+
+                        foreach (SqlParameter Parameter in command.Parameters)
+                        {
+                            if (Parameter.Value == null)
+                            {
+                                Parameter.Value = DBNull.Value;
+                            }
+                        }
                         string succ = command.ExecuteScalar().ToString();
                         //  connection.Close();
                         //  return succ;
@@ -2588,6 +2605,15 @@ new MailAddress(vemail3));
                     command.Parameters["@xdate"].Value = c_pri.xdate;
                     command.Parameters["@log_staff"].Value = num;// c_pri.log_staff;
                     command.Parameters["@xvisible"].Value = c_pri.xvisible;
+
+
+                    foreach (SqlParameter Parameter in command.Parameters)
+                    {
+                        if (Parameter.Value == null)
+                        {
+                            Parameter.Value = DBNull.Value;
+                        }
+                    }
                     string succ = command.ExecuteScalar().ToString();
                     //  connection.Close();
                     //    return succ;
@@ -2621,6 +2647,15 @@ new MailAddress(vemail3));
                     command.Parameters["@xmobile"].Value = c_inv.xmobile;
                     command.Parameters["@log_staff"].Value = num;// c_inv.log_staff;
                     command.Parameters["@visible"].Value = c_inv.visible;
+
+
+                    foreach (SqlParameter Parameter in command.Parameters)
+                    {
+                        if (Parameter.Value == null)
+                        {
+                            Parameter.Value = DBNull.Value;
+                        }
+                    }
                     string succ = command.ExecuteScalar().ToString();
                     ///     connection.Close();
                     //  return succ;
@@ -2655,6 +2690,15 @@ new MailAddress(vemail3));
                 command.Parameters["@assignor_address"].Value = c_assinfo.assignor_address;
                 command.Parameters["@log_staff"].Value = num;// c_ass.log_staff;
                 command.Parameters["@xvisible"].Value = c_assinfo.visible;
+
+
+                foreach (SqlParameter Parameter in command.Parameters)
+                {
+                    if (Parameter.Value == null)
+                    {
+                        Parameter.Value = DBNull.Value;
+                    }
+                }
                 string succ = command.ExecuteScalar().ToString();
                 //connection.Close();
                 //  return succ;
@@ -2701,7 +2745,16 @@ new MailAddress(vemail3));
                 command.Parameters["@log_staff"].Value = num;// c_pt.log_staff;
                 command.Parameters["@reg_date"].Value = c_pt.reg_date;
                 command.Parameters["@xvisible"].Value = c_pt.xvisible;
-             //   string succ = command.ExecuteScalar().ToString();
+                //   string succ = command.ExecuteScalar().ToString();
+
+
+                foreach (SqlParameter Parameter in command.Parameters)
+                {
+                    if (Parameter.Value == null)
+                    {
+                        Parameter.Value = DBNull.Value;
+                    }
+                }
 
                 xID = command.ExecuteScalar().ToString();
                 //   connection.Close();
@@ -2731,6 +2784,14 @@ new MailAddress(vemail3));
                 command.Parameters.Add("@reg_number", SqlDbType.NVarChar, 50);
                 command.Parameters["@xID"].Value = Convert.ToInt64(xID);
                 command.Parameters["@reg_number"].Value = str2;
+
+                foreach (SqlParameter Parameter in command.Parameters)
+                {
+                    if (Parameter.Value == null)
+                    {
+                        Parameter.Value = DBNull.Value;
+                    }
+                }
                 str = command.ExecuteNonQuery().ToString();
 
 
@@ -2765,6 +2826,15 @@ new MailAddress(vemail3));
                 command.Parameters["@xmobile"].Value = c_rep.xmobile;
                 command.Parameters["@log_staff"].Value = num;// c_rep.log_staff;
                 command.Parameters["@visible"].Value = c_rep.visible;
+
+
+                foreach (SqlParameter Parameter in command.Parameters)
+                {
+                    if (Parameter.Value == null)
+                    {
+                        Parameter.Value = DBNull.Value;
+                    }
+                }
                 string succ = command.ExecuteScalar().ToString();
 
             }
@@ -2782,6 +2852,14 @@ new MailAddress(vemail3));
                 command.Parameters.Add("@log_officer", SqlDbType.NVarChar, 50);
                 command.Parameters["@ID"].Value = Convert.ToInt64(num);
                 command.Parameters["@log_officer"].Value = "0";
+
+                foreach (SqlParameter Parameter in command.Parameters)
+                {
+                    if (Parameter.Value == null)
+                    {
+                        Parameter.Value = DBNull.Value;
+                    }
+                }
                 string str2 = command.ExecuteNonQuery().ToString();
 
             }
@@ -2800,7 +2878,16 @@ new MailAddress(vemail3));
 		command.Parameters.Add("@log_officer", SqlDbType.NVarChar, 50);
 		command.Parameters["@ID"].Value = Convert.ToInt64(pwalletID);
 		command.Parameters["@log_officer"].Value = log_officer;
-		string str2 = command.ExecuteNonQuery().ToString();
+
+
+        foreach (SqlParameter Parameter in command.Parameters)
+        {
+            if (Parameter.Value == null)
+            {
+                Parameter.Value = DBNull.Value;
+            }
+        }
+        string str2 = command.ExecuteNonQuery().ToString();
 		connection.Close();
 		return str2;
 	}
@@ -2829,7 +2916,16 @@ new MailAddress(vemail3));
 		command.Parameters["@rep3_pic"].Value = rep3_pic;
 		command.Parameters["@rep4_pic"].Value = rep4_pic;
 		command.Parameters["@pwalletID"].Value = pwalletID;
-		string succ = command.ExecuteNonQuery().ToString();
+
+
+        foreach (SqlParameter Parameter in command.Parameters)
+        {
+            if (Parameter.Value == null)
+            {
+                Parameter.Value = DBNull.Value;
+            }
+        }
+        string succ = command.ExecuteNonQuery().ToString();
 		connection.Close();
 		return succ;
 	}

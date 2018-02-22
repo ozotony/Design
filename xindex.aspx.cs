@@ -607,7 +607,7 @@ public partial class xindex : System.Web.UI.Page
         AddNewRowToGrid_Pri_gv();
     }
 
-    protected void SaveAll_Click(object sender, EventArgs e)
+    protected void SaveAll2_Click(object sender, EventArgs e)
     {
         TransactionOptions transactionOptions = new TransactionOptions
         {

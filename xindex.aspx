@@ -798,7 +798,7 @@ mso-fareast-font-family:Andalus"><span style="mso-list:Ignore">9.<span
                     onclick="SaveAll_Click" />--%>
 
                      <asp:Button ID="Button2" runat="server" Text="Submit Application"  class="button" 
-                    onclick="SaveAll_Click" />
+                    onclick="SaveAll2_Click" />
                 </td>
             </tr>           
             </table>
