@@ -110,8 +110,9 @@
                       <br /><span class="badge alert-info"> <%Response.Write(lt_mi_Kiv);%> </span> 
             </td>
 
-            <td>
-
+            <td style="width: 30%;" align="center">
+                <a href="./EditApplication.aspx">
+  <img alt="" src="../../../images/view.png" style="width: 100px; height: 100px" /></a>
 
             </td>
 
@@ -129,8 +130,8 @@
                 <a href="../examiners_Kiv.aspx">KIV APPLICATIONS</a>
             </td>
 
-            <td>
-
+            <td style="width: 30%;" align="center">
+                 <a href="./editApplication.aspx">EDIT APPLICATION</a>
 
             </td>
             <td>

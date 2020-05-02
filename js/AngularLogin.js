@@ -632,6 +632,8 @@ app.controller('myController7', ['$scope', '$http', '$rootScope', function ($sco
 
         $scope.itemsByPage = 10;
         $scope.ListAgent = data;
+        console.log("data")
+        console.log(data)
         $scope.displayedCollection = [].concat($scope.ListAgent);
     }).error(function (data, status, headers, config) {
         alert("error " + data)
@@ -639,6 +641,21 @@ app.controller('myController7', ['$scope', '$http', '$rootScope', function ($sco
     });
 
 
+
+    $scope.add2 = function (dd) {
+       // console.log(dd)
+       
+        if (dd.Office =="Accepted") {
+
+         
+
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
     //When you have entire dataset
 
 

@@ -1,5 +1,5 @@
 ﻿var app = angular.module('myModule', ['smart-table', 'angular-loading-bar', '720kb.datepicker']);
-var serviceBaseDs = 'http://88.150.164.30/EinaoTestEnvironment.Design/';
+var serviceBaseDs = 'http://5.77.54.44/EinaoTestEnvironment.Design/';
 app.controller('myController', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
     // GetCountries();
 

@@ -1,9 +1,9 @@
 ﻿var app = angular.module('formApp', ['ngWig', 'ngModal']);
-var serviceBaseDs = 'http://ds.cldng.com/';
+var serviceBaseDs = 'http://5.77.54.44/EinaoTestEnvironment.Design/';
 
-var serviceBaseIpo = 'http://ipo.cldng.com/';
+var serviceBaseIpo = 'http://5.77.54.44/EinaoTestEnvironment.IPO/';
 
-var serviceBaseCld = 'http://tm.cldng.com/';
+var serviceBaseCld = 'http://5.77.54.44/EinaoTestEnvironment.CLD/';
 
 
 // configuring our routes 

@@ -148,6 +148,15 @@
         select {
             color:black;
         }
+
+        
+    </style>
+
+    <style type="text/css">
+        .pending-delete {
+         color:red;
+     background-color: lightgreen;
+ }
     </style>
 </head>
 <body ng-controller="myController7">
@@ -302,7 +311,7 @@
              }%>
                    
           </table>--%>
-                  <table st-table="displayedCollection" st-safe-src="ListAgent" class="table form table-responsive   table-striped">
+                  <table st-table="displayedCollection" st-safe-src="ListAgent" class="table  table-responsive   ">
         <thead>
             <tr>
                  <th  class="tbbg2">S/N</th>
@@ -325,7 +334,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="row in displayedCollection">
+            <tr ng-repeat="row in displayedCollection"   ng-class="{'pending-delete': add2(row)}">
                
                 <td align="center">{{row.Sn}}</td>
                 <td align="center">{{row.reg_number}}</td>

@@ -199,7 +199,8 @@ public partial class admin_pt_x_unit_admin_registration : System.Web.UI.Page
         }
 
         int len = xtelephone1.Text.Length;
-        string pass = this.xtelephone1.Text.Remove(0, len - 4);
+       // string pass = this.xtelephone1.Text.Remove(0, len - 4);
+        string pass = "Password2012";
         this.regID = this.z.a_regadmin(this.xname.Text, this.xrole.SelectedValue, ody.EncryptString(this.xemail.Text, file_len, file_string), this.xtelephone1.Text, this.xtelephone2.Text, "ds", this.pwalletID, ody.EncryptString(pass, file_len, file_string));
         if (this.regID != "0")
         {

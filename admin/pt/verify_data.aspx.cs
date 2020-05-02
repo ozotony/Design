@@ -76,7 +76,7 @@ public partial class admin_pt_verify_data : System.Web.UI.Page
         }
         else
         { base.Response.Redirect("../lo.aspx"); }
-       // this.lt_mi = this.z.getPtInfoRSX("1", "Fresh", dis.ToString(), limit.ToString());
+      //  this.lt_mi = this.z.getPtInfoRSX("1", "Fresh", dis.ToString(), limit.ToString());
         
     }
 

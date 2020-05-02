@@ -10,7 +10,7 @@
 // =============================================================================
 app.controller('formController', function ($scope,  $rootScope, $http) {
 
-    var serviceBase = 'http://88.150.164.30/EinaoTestEnvironment.Patent/Handlers/GetEmailCount.ashx';
+    var serviceBase = 'http://5.77.54.44/EinaoTestEnvironment.Patent/Handlers/GetEmailCount.ashx';
     $(document).ready(function () {
 
      //   var xname = $("input#xname").val();
